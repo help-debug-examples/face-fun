@@ -11,12 +11,11 @@ import ARKit
 
 class FaceViewController: UIViewController {
 
-    private var sceneView: ARSCNView!
+    @IBOutlet private var sceneView: ARSCNView!
     fileprivate var faceNode: SCNNode?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        sceneView = view as? ARSCNView
         sceneView.delegate = self
         sceneView.autoenablesDefaultLighting = true
     }
@@ -34,6 +33,10 @@ class FaceViewController: UIViewController {
         sceneView.session.pause()
 
         faceNode?.geometry?.firstMaterial?.transparency = 1
+    }
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 
     @IBAction func didTapToggleMeshButton(_ sender: UIButton) {
